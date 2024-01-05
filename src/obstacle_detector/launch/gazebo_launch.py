@@ -15,10 +15,15 @@ def generate_launch_description():
         Node(package = 'obstacle_detector',
              executable= 'Detector',
              output = 'screen',
-             parameters=[{'use_sim_time' : True}],
+             parameters=[{'use_sim_time' : True}, {'isSimulation' : True}],
              remappings=[('scan','scan_raw')]
         ),
 
+        Node(package = 'rviz2',
+             executable= 'rviz2',
+              output = 'screen',
+              parameters=[{'use_sim_time' : True}],
+        ),
 
         IncludeLaunchDescription(
           PythonLaunchDescriptionSource(

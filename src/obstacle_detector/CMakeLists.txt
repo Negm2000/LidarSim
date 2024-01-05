@@ -11,11 +11,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 set(dependencies 
   rclcpp
   sensor_msgs
+  visualization_msgs
   tf2_ros
 )
 

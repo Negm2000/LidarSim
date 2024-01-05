@@ -11,7 +11,6 @@ Detector::Detector()
       "/scan", rclcpp::SensorDataQoS(), 
       std::bind(&Detector::laser_callback, this, _1)
     );
-  timer = create_wall_timer(500ms, std::bind(&Detector::timer_callback, this));
   static_broadcaster = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
 }
 
@@ -32,10 +31,4 @@ void Detector::laser_callback(sensor_msgs::msg::LaserScan::UniquePtr msgPtr)
   transformStamped.transform.translation.x = msg->ranges[nearest_obstacle_idx] * std::cos(theta);
   transformStamped.transform.translation.y = msg->ranges[nearest_obstacle_idx] * std::sin(theta);
   static_broadcaster->sendTransform(transformStamped);
-}
-
-void Detector::timer_callback()
-{
-  if (msg == nullptr) {return;}
-  RCLCPP_INFO(this->get_logger(), "Nearest obstacle is at %.2fm", msg->ranges[nearest_obstacle_idx]);
 }

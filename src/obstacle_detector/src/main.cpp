@@ -8,8 +8,8 @@ int main(int argc, char ** argv)
   std::shared_ptr<Detector> detector_node = std::make_shared<Detector>();
   std::shared_ptr<Monitor> monitor_node = std::make_shared<Monitor>();
   rclcpp::executors::SingleThreadedExecutor executor;
-  executor.add_node(detector_node);
-  executor.add_node(monitor_node);
+  executor.add_node(detector_node->get_node_base_interface());
+  executor.add_node(monitor_node->get_node_base_interface());
   executor.spin();
   rclcpp::shutdown();
 }

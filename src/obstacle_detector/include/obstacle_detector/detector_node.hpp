@@ -13,10 +13,8 @@ public:
 
 private:
   sensor_msgs::msg::LaserScan::UniquePtr msg;
-  rclcpp::TimerBase::SharedPtr timer;
   std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_broadcaster;
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr sub;
-  void timer_callback();
   void laser_callback(sensor_msgs::msg::LaserScan::UniquePtr msgPtr);
 };
 

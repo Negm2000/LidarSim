@@ -15,6 +15,8 @@ private:
     rclcpp::TimerBase::SharedPtr timer;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr marker_pub;
     void control_cycle();
+    bool isSimulation;
+    std::string base_frame;
 public:
     Monitor();
 };
