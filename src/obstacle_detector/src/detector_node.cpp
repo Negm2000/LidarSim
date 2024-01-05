@@ -6,10 +6,12 @@ using namespace std::chrono_literals;
 Detector::Detector()
 : Node("detector_node")
 {
-  sub = create_subscription<sensor_msgs::msg::LaserScan>(
-    "/scan", rclcpp::SensorDataQoS(), std::bind(
-      &Detector::laser_callback, this, _1));
-  timer = std::move(create_wall_timer(500ms, std::bind(&Detector::timer_callback, this)));
+  sub = create_subscription<sensor_msgs::msg::LaserScan>
+    (
+      "/scan", rclcpp::SensorDataQoS(), 
+      std::bind(&Detector::laser_callback, this, _1)
+    );
+  timer = create_wall_timer(500ms, std::bind(&Detector::timer_callback, this));
   static_broadcaster = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
 }
 

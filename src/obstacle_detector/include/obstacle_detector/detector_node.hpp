@@ -1,3 +1,6 @@
+#ifndef OBSTACLE_DETECTOR_DETECTOR_NODE_HPP_
+#define OBSTACLE_DETECTOR_DETECTOR_NODE_HPP_
+
 #include "rclcpp/rclcpp.hpp"
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <tf2_ros/static_transform_broadcaster.h>
@@ -16,3 +19,5 @@ private:
   void timer_callback();
   void laser_callback(sensor_msgs::msg::LaserScan::UniquePtr msgPtr);
 };
+
+#endif // OBSTACLE_DETECTOR_DETECTOR_NODE_HPP_
